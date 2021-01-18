@@ -1,0 +1,19 @@
+version: '3.5'
+
+services:
+  web-build:
+    image: ${IMAGE_NAME:-registry.gitlab.com/redmic-project/docker/web-build}:${IMAGE_TAG:-latest}
+    build:
+      context: .
+      dockerfile: ${DOCKERFILE:-Dockerfile}
+      args:
+        SELENIUM_NODE_CHROME_VERSION:
+        APT_TRANSPORT_HTTPS_VERSION:
+        BZIP2_VERSION:
+        CURL_VERSION:
+        GIT_VERSION:
+        YARN_VERSION:
+        NODEJS_VERSION:
+        GRUNT_CLI_VERSION:
+        CACHE_PATH:
+        WORK_PATH:
