@@ -1,16 +1,16 @@
-ARG SELENIUM_NODE_CHROME_VERSION=3.12.0-boron
+ARG SELENIUM_NODE_CHROME_VERSION=87.0
 FROM selenium/node-chrome:${SELENIUM_NODE_CHROME_VERSION}
 
 LABEL maintainer="info@redmic.es"
 
 USER root
 
-ARG APT_TRANSPORT_HTTPS_VERSION=1.2.32ubuntu0.2 \
-	BZIP2_VERSION=1.0.6-8ubuntu0.2 \
-	CURL_VERSION=7.47.0-1ubuntu2.18 \
-	GIT_VERSION=1:2.7.4-0ubuntu1.9 \
+ARG APT_TRANSPORT_HTTPS_VERSION=2.0.4 \
+	BZIP2_VERSION=1.0.8-2 \
+	CURL_VERSION=7.68.0-1ubuntu2.4 \
+	GIT_VERSION=1:2.25.1-1ubuntu3 \
 	YARN_VERSION=1.22.5-1 \
-	NODEJS_VERSION=9.11.2-1nodesource1 \
+	NODEJS_VERSION=12.20.1-deb-1nodesource1 \
 	GRUNT_CLI_VERSION=1.3.2
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
@@ -22,7 +22,7 @@ RUN apt-get update && \
 		"git=${GIT_VERSION}" && \
 	curl -sL https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add - && \
 	echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list && \
-	curl -sL https://deb.nodesource.com/setup_9.x | bash - && \
+	curl -sL https://deb.nodesource.com/setup_12.x | bash - && \
 	apt-get update && \
 	apt-get install -y --no-install-recommends \
 		"yarn=${YARN_VERSION}" \
