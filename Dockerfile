@@ -34,7 +34,7 @@ ARG HOME_PATH=/redmic \
 	ORIGINAL_UID=1200
 
 SHELL ["/bin/sh", "-c"]
-RUN mkdir -m 777 -p ${HOME_PATH} && \
+RUN mkdir -m 777 ${HOME_PATH} && \
 	npm install -g "grunt-cli@${GRUNT_CLI_VERSION}"
 
 USER ${ORIGINAL_UID}
