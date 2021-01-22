@@ -15,5 +15,5 @@ services:
         YARN_VERSION:
         NODEJS_VERSION:
         GRUNT_CLI_VERSION:
-        CACHE_PATH:
-        WORK_PATH:
+        HOME_PATH:
+        ORIGINAL_UID:

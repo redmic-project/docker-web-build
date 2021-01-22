@@ -5,8 +5,7 @@ LABEL maintainer="info@redmic.es"
 
 USER root
 
-ARG CACHE_PATH=/opt/cache \
-	APT_TRANSPORT_HTTPS_VERSION=1.2.32ubuntu0.2 \
+ARG APT_TRANSPORT_HTTPS_VERSION=1.2.32ubuntu0.2 \
 	BZIP2_VERSION=1.0.6-8ubuntu0.2 \
 	CURL_VERSION=7.47.0-1ubuntu2.18 \
 	GIT_VERSION=1:2.7.4-0ubuntu1.9 \
@@ -29,14 +28,19 @@ RUN apt-get update && \
 		"yarn=${YARN_VERSION}" \
 		"nodejs=${NODEJS_VERSION}" && \
 	apt-get clean && \
-	rm -rf /var/lib/apt/lists/* && \
-	npm install -g "grunt-cli@${GRUNT_CLI_VERSION}" && \
-	yarn config set cache-folder "${CACHE_PATH}"
+	rm -rf /var/lib/apt/lists/*
 
-USER 1200
+ARG HOME_PATH=/redmic \
+	ORIGINAL_UID=1200
 
-ARG WORK_PATH=/opt/redmic
+SHELL ["/bin/sh", "-c"]
+RUN mkdir -m 777 -p ${HOME_PATH} && \
+	npm install -g "grunt-cli@${GRUNT_CLI_VERSION}"
 
-WORKDIR ${WORK_PATH}
+USER ${ORIGINAL_UID}
+
+WORKDIR ${HOME_PATH}
+
+ENV HOME=${HOME_PATH}
 
 ENTRYPOINT []
