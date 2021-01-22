@@ -10,8 +10,7 @@ ARG APT_TRANSPORT_HTTPS_VERSION=2.0.4 \
 	CURL_VERSION=7.68.0-1ubuntu2.4 \
 	GIT_VERSION=1:2.25.1-1ubuntu3 \
 	YARN_VERSION=1.22.5-1 \
-	NODEJS_VERSION=12.20.1-deb-1nodesource1 \
-	GRUNT_CLI_VERSION=1.3.2
+	NODEJS_VERSION=12.20.1-deb-1nodesource1
 
 SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 RUN apt-get update && \
@@ -31,7 +30,8 @@ RUN apt-get update && \
 	rm -rf /var/lib/apt/lists/*
 
 ARG HOME_PATH=/redmic \
-	ORIGINAL_UID=1200
+	ORIGINAL_UID=1200 \
+	GRUNT_CLI_VERSION=1.3.2
 
 SHELL ["/bin/sh", "-c"]
 RUN mkdir -m 777 ${HOME_PATH} && \
