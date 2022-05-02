@@ -42,8 +42,6 @@ ARG NPM_VERSION=8.8.0 \
 
 SHELL ["/bin/sh", "-c"]
 RUN mkdir -m 777 "${HOME_PATH}" && \
-	git config --global --add safe.directory "${HOME_PATH}" && \
-	git config --global --add safe.directory "${BUILD_PATH}" && \
 	npm install -g \
 		"npm@${NPM_VERSION}" \
 		"yarn@${YARN_VERSION}" \
@@ -52,6 +50,10 @@ RUN mkdir -m 777 "${HOME_PATH}" && \
 USER ${ORIGINAL_UID}
 
 WORKDIR ${HOME_PATH}
+
+SHELL ["/bin/sh", "-c"]
+RUN git config --global --add safe.directory "${HOME_PATH}" && \
+	git config --global --add safe.directory "${BUILD_PATH}"
 
 ENV HOME=${HOME_PATH}
 
