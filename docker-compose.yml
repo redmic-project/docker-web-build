@@ -12,8 +12,11 @@ services:
         BZIP2_VERSION:
         CURL_VERSION:
         GIT_VERSION:
-        YARN_VERSION:
+        NODEJS_SOURCE:
         NODEJS_VERSION:
+        NPM_VERSION:
+        YARN_VERSION:
         GRUNT_CLI_VERSION:
         HOME_PATH:
+        BUILD_PATH:
         ORIGINAL_UID:
