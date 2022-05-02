@@ -33,15 +33,19 @@ RUN apt-get update && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
-ARG HOME_PATH=/redmic \
-	ORIGINAL_UID=1200 \
+ARG NPM_VERSION=8.8.0 \
 	YARN_VERSION=1.22.18 \
-	GRUNT_CLI_VERSION=1.4.3
+	GRUNT_CLI_VERSION=1.4.3 \
+	HOME_PATH=/redmic \
+	BUILD_PATH=/builds/redmic-project/client/web \
+	ORIGINAL_UID=1200
 
 SHELL ["/bin/sh", "-c"]
-RUN mkdir -m 777 ${HOME_PATH} && \
+RUN mkdir -m 777 "${HOME_PATH}" && \
+	git config --global --add safe.directory "${HOME_PATH}" && \
+	git config --global --add safe.directory "${BUILD_PATH}" && \
 	npm install -g \
-		npm \
+		"npm@${NPM_VERSION}" \
 		"yarn@${YARN_VERSION}" \
 		"grunt-cli@${GRUNT_CLI_VERSION}"
 
