@@ -18,5 +18,4 @@ services:
         YARN_VERSION:
         GRUNT_CLI_VERSION:
         HOME_PATH:
-        BUILD_PATH:
         ORIGINAL_UID:

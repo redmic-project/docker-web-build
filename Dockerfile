@@ -37,7 +37,6 @@ ARG NPM_VERSION=8.8.0 \
 	YARN_VERSION=1.22.18 \
 	GRUNT_CLI_VERSION=1.4.3 \
 	HOME_PATH=/redmic \
-	BUILD_PATH=/builds/redmic-project/client/web \
 	ORIGINAL_UID=1200
 
 SHELL ["/bin/sh", "-c"]
@@ -54,7 +53,6 @@ WORKDIR ${HOME_PATH}
 ENV HOME=${HOME_PATH}
 
 SHELL ["/bin/sh", "-c"]
-RUN git config --global --add safe.directory "${HOME_PATH}"/* && \
-	git config --global --add safe.directory "${BUILD_PATH}"/*
+RUN git config --global --add safe.directory *
 
 ENTRYPOINT []
