@@ -51,10 +51,10 @@ USER ${ORIGINAL_UID}
 
 WORKDIR ${HOME_PATH}
 
+ENV HOME=${HOME_PATH}
+
 SHELL ["/bin/sh", "-c"]
 RUN git config --global --add safe.directory "${HOME_PATH}" && \
 	git config --global --add safe.directory "${BUILD_PATH}"
-
-ENV HOME=${HOME_PATH}
 
 ENTRYPOINT []
