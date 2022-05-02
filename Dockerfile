@@ -53,6 +53,6 @@ WORKDIR ${HOME_PATH}
 ENV HOME=${HOME_PATH}
 
 SHELL ["/bin/sh", "-c"]
-RUN git config --global --add safe.directory *
+RUN git config --global --add safe.directory "*"
 
 ENTRYPOINT []
