@@ -3,6 +3,8 @@ FROM selenium/node-chrome:${SELENIUM_NODE_CHROME_VERSION}
 
 LABEL maintainer="info@redmic.es"
 
+ENTRYPOINT []
+
 USER root
 
 ARG APT_TRANSPORT_HTTPS_VERSION \
@@ -33,8 +35,11 @@ RUN apt-get update && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/*
 
+SHELL ["/bin/sh", "-c"]
+RUN git config --global --add safe.directory "*" && \
+	git config --global url."https://".insteadOf ssh://
+
 ARG NPM_VERSION \
-	YARN_VERSION \
 	GRUNT_CLI_VERSION \
 	HOME_PATH \
 	ORIGINAL_UID
@@ -43,7 +48,6 @@ SHELL ["/bin/sh", "-c"]
 RUN mkdir -m 777 "${HOME_PATH}" && \
 	npm install -g \
 		"npm@${NPM_VERSION}" \
-		"yarn@${YARN_VERSION}" \
 		"grunt-cli@${GRUNT_CLI_VERSION}"
 
 USER ${ORIGINAL_UID}
@@ -51,9 +55,3 @@ USER ${ORIGINAL_UID}
 WORKDIR ${HOME_PATH}
 
 ENV HOME=${HOME_PATH}
-
-SHELL ["/bin/sh", "-c"]
-RUN git config --global --add safe.directory "*" && \
-	git config --global url."https://".insteadOf ssh://
-
-ENTRYPOINT []
